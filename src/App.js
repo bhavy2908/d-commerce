@@ -6,7 +6,7 @@ import Products from './components/Products';
 
 function App() {
   return (
-    <div style={{ backgroundColor: '#F2F2F2'}}>
+    <div style={{ backgroundColor: '#DDDDDD'}}>
       <Navb />
       <Hero />
       <div className='container'>
