@@ -4,43 +4,81 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import dcommerce from '../assets/logos/dcommerce.png'
-import {useNavigate} from 'react-router-dom'
+import image from "../assets/logos/search.png"
+import cart from "../assets/logos/cart.png"
+import React from 'react'
+import logo from '../assets/logos/dcommerce.png'
+import heart from '../assets/logos/heart.gif'
+import { auth } from './firebase';
+import { signInWithEmailAndPassword, onAuthStateChanged, getAuth } from 'firebase/auth';
+import { useNavigate } from "react-router-dom";
 
 
-function Navb() {
+
+var user_email = null
+const authh = getAuth();
+onAuthStateChanged(authh, (user) => {
+    if (user) {
+        user_email = user.email;
+        user_email = user_email.substring(0, user_email.indexOf('@'));
+    } else {
+    }
+});
+
+
+const Navb = () => {
     const navigate = useNavigate();
+    const handleClick = () => {
+        navigate('/orders')
+    }
+
     return (
-        <Navbar bg="light" expand="lg" className=''>
-            <Container fluid>
-                <Navbar.Brand href="#"><img src={dcommerce} style={{width: '120px'}}></img></Navbar.Brand>
+
+        <Navbar bg="primary" sticky='top' variant="dark" expand="lg">
+            <Container>
+                <Navbar.Brand href="#"><img style={{ width: "120px" }} src={logo}></img></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
-                    <Form className="d-flex" >
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-3 px-1"
-                            aria-label="Search"
-                            style={{ width: '700px', marginRight: 'auto', marginLeft: '400px'}}
-                        />
-                        <Button variant="outline-primary">Search</Button>
-                    </Form>
                     <Nav
-                        className="ml-auto my-2 my-lg-0 d-flex justify-content-end"
-                        style={{ maxHeight: '100px', marginRight: '0', marginLeft: 'auto'}}
+                        className="me-auto my-2 my-lg-0 "
+                        style={{ maxHeight: '40px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="/signup">Login</Nav.Link>
-                        <Nav.Link href="#action1">Wishlist</Nav.Link>
-                        <Nav.Link href="#action1">Cart</Nav.Link>
-                        <Nav.Link href="#action1" style={{color: 'purple'}}>Code</Nav.Link>
+                        <Form className="d-flex">
+                            <Form.Control
+                                type="search"
+                                placeholder="Search"
+                                className="me-2"
+                                style={{ width: '720px' }}
+                                aria-label="Search"
+
+                            />
+                            <Button variant="light"><img style={{ width: "20px" }} src={image} /></Button>
+
+
+                        </Form>
+
+
+                        <NavDropdown style={{ marginLeft: "110px", color: "white" }} title={user_email} id="navbarScrollingDropdown">
+                            <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="" onClick={handleClick}>
+                                View Orders
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">
+                                Logout
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link style={{ marginLeft: "10px", color: "white" }} href="#action1"><h6>Wishlist <img style={{ width: "25px", marginBottom: "5px" }} src={heart}></img></h6></Nav.Link>
+
+                        <Nav.Link style={{ marginLeft: "10px", color: "white" }} href="#action1"><h6><img style={{ width: "18px" }} src={cart}></img>  Cart</h6></Nav.Link>
+
                     </Nav>
-                    
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    );
+    )
 }
 
-export default Navb;
+export default Navb
