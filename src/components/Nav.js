@@ -5,9 +5,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import dcommerce from '../assets/logos/dcommerce.png'
+import {useNavigate} from 'react-router-dom'
 
 
 function Navb() {
+    const navigate = useNavigate();
     return (
         <Navbar bg="light" expand="lg" className=''>
             <Container fluid>
@@ -29,7 +31,7 @@ function Navb() {
                         style={{ maxHeight: '100px', marginRight: '0', marginLeft: 'auto'}}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Login</Nav.Link>
+                        <Nav.Link href="/signup">Login</Nav.Link>
                         <Nav.Link href="#action1">Wishlist</Nav.Link>
                         <Nav.Link href="#action1">Cart</Nav.Link>
                         <Nav.Link href="#action1" style={{color: 'purple'}}>Code</Nav.Link>
