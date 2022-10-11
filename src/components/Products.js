@@ -3,14 +3,15 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import productImg from '../assets/images/product.png';
-import categoryImg from '../assets/images/category.png'
+import categoryImg from '../assets/images/category.png';
 
 function Products() {
     return (
         <div>
             <div style={{ backgroundColor: '#EEEEEE' }} className='px-4 my-4 py-4'>
-
+                
                 <h3>Suggested for you</h3>
+                
                 <br></br>
                 <Row xs={1} md={5} className="g-4">
                     {Array.from({ length: 5 }).map((_, idx) => (
@@ -31,6 +32,8 @@ function Products() {
                         </Col>
                     ))}
                 </Row>
+                <br></br>
+                <a style={{color: 'grey'}}>View all</a>
             </div>
             <div style={{ backgroundColor: '#EEEEEE' }} className='px-4 my-4 py-4'>
 
@@ -41,7 +44,7 @@ function Products() {
                         <Col>
                             <Card>
                                 <Card.Img variant="top" src={productImg} />
-                                <Card.Body className=' ' style={{ textAlign: 'center' }}>
+                                <Card.Body className=' ' style={{textAlign: 'center'}}>
 
                                     <Card.Title>Product Name</Card.Title>
                                     <Card.Text>
@@ -56,6 +59,8 @@ function Products() {
                         </Col>
                     ))}
                 </Row>
+                <br></br>
+                <a style={{ color: 'grey' }}>View all</a>
             </div>
             <div style={{ backgroundColor: '#EEEEEE' }} className='px-4 my-4 py-4'>
                 <h3>Categories</h3>
@@ -76,6 +81,8 @@ function Products() {
                         </Col>
                     ))}
                 </Row>
+                <br></br>
+                <a style={{ color: 'grey' }}>View all</a>
             </div>
         </div>
 
