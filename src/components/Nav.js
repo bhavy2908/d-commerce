@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import image from "../assets/logos/search.png"
 import cart from "../assets/logos/cart.png"
-import React from 'react'
+import React, { useState } from "react";
 import logo from '../assets/logos/dcommerce.png'
 import heart from '../assets/logos/heart.gif'
 import { auth } from './firebase';
@@ -15,7 +15,9 @@ import { useNavigate } from "react-router-dom";
 
 
 
-var user_email = null
+
+
+var user_email = 'user';
 const authh = getAuth();
 onAuthStateChanged(authh, (user) => {
     if (user) {
@@ -32,6 +34,14 @@ const Navb = () => {
         navigate('/orders')
     }
 
+    const [input, setInput] = useState('');
+    const [searchText, setSearchText] = useState('');
+
+    const clickHandler = () => {
+        setSearchText(input);
+        console.log(searchText);
+    }
+
     return (
 
         <Navbar bg="primary" sticky='top' variant="dark" expand="lg">
@@ -45,12 +55,15 @@ const Navb = () => {
                         navbarScroll
                     >
                         <Form className="d-flex">
+                        
                             <Form.Control
                                 type="search"
-                                placeholder="Search"
+                                placeholder="Type anything here"
                                 className="me-2"
                                 style={{ width: '720px' }}
                                 aria-label="Search"
+                                value={input}
+                                onKeyUp={clickHandler}
 
                             />
                             <Button variant="light"><img style={{ width: "20px" }} src={image} /></Button>
@@ -81,4 +94,4 @@ const Navb = () => {
     )
 }
 
-export default Navb
+    export default Navb;
